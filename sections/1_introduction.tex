@@ -1,0 +1,21 @@
+\section{Introduction}
+\label{sec:introduction}
+%Give at least a short introduction to what faas is
+Function-as-a-service (FaaS), often also referred to as serverless computing, is a relatively new paradigm, where code is only run on demand in isolated environments. 
+This makes it possible to bill users in a fine-grained manner, depending on metrics like number of executions or execution time. \cite{10.1145/3352460.3358296}
+In practice FaaS deployments are often optimized to either run in large datacenters of big public cloud providers \cite{288770}, \cite{9302817} (from here on out also referred to as Cloud) or in designated edge-distributed networks\footnote{For example, Cloudflare's Worker platform is deployed on their globally distributed CDN}. 
+However, as researchers and industries attempt to improve performance and reduce latency further, the attention has also shifted towards alternatives. 
+
+One of those potential alternatives is Fog Computing, which we will here define as a fusion of Cloud and Edge Computing where computation resources are deployed on the network paths in between as to split up load over a more diverse infrastructure. 
+That is, each layer between the Cloud and the Edge offers a unique trade-off between resource availability and latency. \cite{9326369}
+
+Particularly, Fog Computing offers three advantages that originate from the preceding definition. Firstly, it promises lower latency by not exclusively running customer code in few, potentially geographically distant datacenters or at the edge where resources are scarce but additionally on infrastructure at the edge and in between. \cite{10.1145/2677046.2677052}
+Secondly, it allows for enhanced privacy since user data can be processed relatively local and decentralized. \cite{10.1145/2677046.2677052}
+Lastly, by reducing the mean geographical distance between client and server, it minimizes global network bandwidth consumption. \cite{https://doi.org/10.1002/spe.3058}
+
+Using the distributed and heterogeneous resources of aforementioned infrastructure efficiently, creates a new set of challenges such as determining appropriate scheduling algorithms or optimal allocation of available resources. AuctionWhisk proposed a new way of solving those issues by using an auction inspired approach. In this model, developers can bid on resources in different environments with the main trade-off consisting in a generally higher price for infrastructure that offers better performance.
+
+% In economics such optima are often controlled through market transactions (e.g.,  the balance between supply and demand). 
+% But markets are generally highly complex and do not offer consistent and intuitive regulations, hence they are hard to construct artificially. %CITE here ?
+% Auctions can be a simpler alternative: They offer a less complicated system that can be used to determine the price a consumer group is prepared to pay for a certain limited good. %CITE here?
+

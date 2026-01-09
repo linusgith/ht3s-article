@@ -1,0 +1,47 @@
+\documentclass[conference,10pt,letterpaper]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{balance}
+\usepackage[all]{nowidow}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise]{cleveref}
+
+\begin{document}
+
+\title{AuctionWhisk: Seeing Through the Fog}
+
+\author{\IEEEauthorblockN{Example Student}
+    \IEEEauthorblockA{\textit{Technische Universit\"at Berlin}\\
+        example.student@campus.tu-berlin.de}
+}
+
+\maketitle
+
+% Discuss the main advantages and disadvantages of AuctionWhisk. When is AuctionWhisk particularly effective? 
+% Are there scenarios, in which AuctionWhisk is impossible to use?
+
+\begin{abstract}
+% In practice Function-as-a-Service (FaaS) deployments are often optimized to run in large datacenters, but as researchers and industries attempt to reduce latency further, the attention has shifted towards FogAuctionWhisk presents a approach to adapting the FaaS paradigm to the heterogeneous infrastructure of fog-computing by allowing developers to individually define the importance of application performance by bidding on resources. This not only allows for more efficient use of computation and improved overall system performance but also for increased earning of the platform provider.
+
+Why does everything break
+\end{abstract}
+
+\input{sections/1_introduction.tex}
+\input{sections/2_background_and_rel_work.tex}
+%Here, you can add the sections that you need to answer your question. 
+\input{sections/3_distributed_systems.tex}
+\input{sections/4_auctions.tex}
+\input{sections/n_conclusion.tex}
+
+\balance
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
+
+\end{document}

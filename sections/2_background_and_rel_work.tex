@@ -1,0 +1,24 @@
+\section{Background and Related Work}
+\label{sec:background}
+
+Although, there has been much research on FaaS and the paradigm has arrived in mainstream technology, with many providers creating their own offering. Be it running in large datacenters (e.g. AWS Lambda, Google Cloud Run Functions, Microsoft Azure Functions) \cite{8241104} or distributed at the edge (Cloudflare Workers, Fastly Compute) \cite{10643918}. At the same time, there are only few commercial offerings for FaaS on fog infrastructure \cite{8814084} and research on the topic is also more scarce.
+
+Deployments in large datacenters and at the edge are architecturally considerably different and offer their respective set of challenges. Nevertheless, one can make assumptions about resource availability in the corresponding environments. To illustrate, a deployment in the Cloud is expected to have virtually infinite, mostly reliable resources \cite{288770} but a deployment at the edge is expected to have very little, often unreliable resources \cite{9657141}. However, fog computing resources are often heterogeneous, with servers closer to the Edge typically possessing lower computational capacity. Consequently, we cannot make the same assumptions about resources here, as we could above. \cite{10.1145/2677046.2677052}
+
+Furthermore, FaaS is traditionally run at a single layer and although requests may be routed through multiple load balancers, proxies, etc., they are only processed at one level of the call graph. %needs cite
+Fog computing, on the other hand, commonly uses resources as proxies and servers \footnote{Server is a broad term, but here it intends to describe a computing instance that serves requests} simultaneously. 
+This is often implemented by checking resource availability at request arrival and forwarding it if resources are insufficient for execution. \cite{https://doi.org/10.1002/spe.3058}
+
+In this article, we propose two contributions:
+\begin{enumerate}
+    \item This is my first great idea
+    \item This is my second great idea
+\end{enumerate}
+
+
+
+% Rephrase this better -> maybe this also belongs in my own part?
+% For the aforementioned established deployments this means, that assumptions on resources can be made and one of two cases is expected: 
+% Either enough resources are available for a request to be executed instantly or requests are queued. From an architecture perspective this is reasonable since there is only one system layer capable of request execution, and we expect it to provide sufficient resources to handle the load.
+% Contrarily, for FaaS in a fog environment, a request is forwarded instead of queued, since there are multiple serving layers, and it can not be assumed that a particular one is able to handle all load. 
+

@@ -1,0 +1,154 @@
+@book{book_bermbach2017_cloud_service_benchmarking,
+    author = "Bermbach, David and Wittern, Erik and Tai, Stefan",
+    title = "Cloud Service Benchmarking: Measuring Quality of Cloud Services from a Client Perspective",
+    year = 2017,
+    isbn = "978-3-319-85672-8",
+    publisher = "Springer",
+    address = "Cham, Switzerland",
+}
+
+@inproceedings{10.1145/3352460.3358296,
+  author = {Shahrad, Mohammad and Balkind, Jonathan and Wentzlaff, David},
+  title = {Architectural Implications of Function-as-a-Service Computing},
+  year = {2019},
+  isbn = {9781450369381},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3352460.3358296},
+  doi = {10.1145/3352460.3358296},
+  abstract = {Serverless computing is a rapidly growing cloud application model, popularized by Amazon's Lambda platform. Serverless cloud services provide fine-grained provisioning of resources, which scale automatically with user demand. Function-as-a-Service (FaaS) applications follow this serverless model, with the developer providing their application as a set of functions which are executed in response to a user- or system-generated event. Functions are designed to be short-lived and execute inside containers or virtual machines, introducing a range of system-level overheads. This paper studies the architectural implications of this emerging paradigm. Using the commercial-grade Apache OpenWhisk FaaS platform on real servers, this work investigates and identifies the architectural implications of FaaS serverless computing. The workloads, along with the way that FaaS inherently interleaves short functions from many tenants frustrates many of the locality-preserving architectural structures common in modern processors. In particular, we find that: FaaS containerization brings up to 20x slowdown compared to native execution, cold-start can be over 10x a short function's execution time, branch mispredictions per kilo-instruction are 20x higher for short functions, memory bandwidth increases by 6x due to the invocation pattern, and IPC decreases by as much as 35\% due to inter-function interference. We open-source FaaSProfiler, the FaaS testing and profiling platform that we developed for this work.},
+  booktitle = {Proceedings of the 52nd Annual IEEE/ACM International Symposium on Microarchitecture},
+  pages = {1063–1075},
+  numpages = {13},
+  keywords = {OpenWhisk, architecture, cloud, faas, function-as-a-service, serverless},
+  location = {Columbus, OH, USA},
+  series = {MICRO-52}
+}
+
+@inproceedings {288770,
+  author = {Marc Brooker and Mike Danilov and Chris Greenwood and Phil Piwonka},
+  title = {On-demand Container Loading in {AWS} Lambda},
+  booktitle = {2023 USENIX Annual Technical Conference (USENIX ATC 23)},
+  year = {2023},
+  isbn = {978-1-939133-35-9},
+  address = {Boston, MA},
+  pages = {315--328},
+  url = {https://www.usenix.org/conference/atc23/presentation/brooker},
+  publisher = {USENIX Association},
+  month = jul
+}
+
+@INPROCEEDINGS{8814084,
+  author={Cheng, Bin and Fuerst, Jonathan and Solmaz, Gurkan and Sanada, Takuya},
+  booktitle={2019 IEEE International Conference on Services Computing (SCC)}, 
+  title={Fog Function: Serverless Fog Computing for Data Intensive IoT Services}, 
+  year={2019},
+  volume={},
+  number={},
+  pages={28-35},
+  keywords={Performance evaluation;Computational modeling;Service computing;Serverless computing;Programming;Data models;Topology;Internet of Things;Time factors;Edge computing;serverless computing;fog computing;edge computing;IoT services;context driven;programming model},
+  doi={10.1109/SCC.2019.00018}
+}
+
+@ARTICLE{9326369,
+  author={Ascigil, Onur and Tasiopoulos, Argyrios G. and Phan, Truong Khoa and Sourlas, Vasilis and Psaras, Ioannis and Pavlou, George},
+  journal={IEEE Transactions on Services Computing}, 
+  title={Resource Provisioning and Allocation in Function-as-a-Service Edge-Clouds}, 
+  year={2022},
+  volume={15},
+  number={4},
+  pages={2410-2424},
+  keywords={Resource management;Cloud computing;Containers;FAA;Routing;Image edge detection;Delays;Edge computing;function-as-a-service (FAAS);serverless computing},
+  doi={10.1109/TSC.2021.3052139}
+}
+
+@INPROCEEDINGS{9302817,
+  author={Djemame, Karim and Parker, Matthew and Datsev, Daniel},
+  booktitle={2020 IEEE/ACM 13th International Conference on Utility and Cloud Computing (UCC)}, 
+  title={Open-source Serverless Architectures: an Evaluation of Apache OpenWhisk}, 
+  year={2020},
+  volume={},
+  number={},
+  pages={329-335},
+  keywords={Cloud computing;Open source software;Servers;Runtime;Computer architecture;Containers;Benchmark testing;Serverless Architecture;Openwhisk;Cloud Computing;Containerisation;Performance Evaluation},
+  doi={10.1109/UCC48980.2020.00052}
+}
+
+@INPROCEEDINGS{9657141,
+  author={Ciavotta, Michele and Motterlini, Davide and Savi, Marco and Tundo, Alessandro},
+  booktitle={2021 IEEE 10th International Conference on Cloud Networking (CloudNet)}, 
+  title={DFaaS: Decentralized Function-as-a-Service for Federated Edge Computing}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-4},
+  keywords={Computational modeling;Conferences;Ecosystems;Decentralized control;Telecommunication traffic;Quality of service;FAA;Function-as-a-Service;Edge Computing;Edge Federation;Load Balancing;Peer-to-Peer Networking},
+  doi={10.1109/CloudNet53349.2021.9657141}
+}
+
+@article{https://doi.org/10.1002/spe.3058,
+  author = {Bermbach, David and Bader, Jonathan and Hasenburg, Jonathan and Pfandzelter, Tobias and Thamsen, Lauritz},
+  title = {AuctionWhisk: Using an auction-inspired approach for function placement in serverless fog platforms},
+  journal = {Software: Practice and Experience},
+  volume = {52},
+  number = {5},
+  pages = {1143-1169},
+  keywords = {distributed scheduling, fog computing, function-as-a-service, serverless computing},
+  doi = {https://doi.org/10.1002/spe.3058},
+  url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/spe.3058},
+  eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/spe.3058},
+  abstract = {Abstract The Function-as-a-Service (FaaS) paradigm has a lot of potential as a computing model for fog environments comprising both cloud and edge nodes, as compute requests can be scheduled across the entire fog continuum in a fine-grained manner. When the request rate exceeds capacity limits at the resource-constrained edge, some functions need to be offloaded toward the cloud. In this article, we present an auction-inspired approach in which application developers bid on resources while fog nodes decide locally which functions to execute and which to offload in order to maximize revenue. Unlike many current approaches to function placement in the fog, our approach can work in an online and decentralized manner. We also present our proof-of-concept prototype AuctionWhisk that illustrates how such an approach can be implemented in a real FaaS platform. Through a number of simulation runs and system experiments, we show that revenue for overloaded nodes can be maximized without dropping function requests.},
+  year = {2022}
+}
+
+@article{10.1145/2677046.2677052,
+  author = {Vaquero, Luis M. and Rodero-Merino, Luis},
+  title = {Finding your Way in the Fog: Towards a Comprehensive Definition of Fog Computing},
+  year = {2014},
+  issue_date = {October 2014},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  volume = {44},
+  number = {5},
+  issn = {0146-4833},
+  url = {https://doi.org/10.1145/2677046.2677052},
+  doi = {10.1145/2677046.2677052},
+  abstract = {The cloud is migrating to the edge of the network, where routers themselves may become the virtualisation infrastructure, in an evolution labelled as "the fog". However, many other complementary technologies are reaching a high level of maturity. Their interplay may dramatically shift the information and communication technology landscape in the following years, bringing separate technologies into a common ground. This paper offers a comprehensive definition of the fog, comprehending technologies as diverse as cloud, sensor networks, peer-to-peer networks, network virtualisation functions or configuration management techniques. We highlight the main challenges faced by this potentially breakthrough technology amalgamation.},
+  journal = {SIGCOMM Comput. Commun. Rev.},
+  month = oct,
+  pages = {27–32},
+  numpages = {6},
+  keywords = {cloud computing, configuration management, fog computing, internet of things (iot), network function virtualisation (nfv), peer-to-peer (p2p), sensor networks}
+}
+
+@INPROCEEDINGS{8241104,
+  author={Lynn, Theo and Rosati, Pierangelo and Lejeune, Arnaud and Emeakaroha, Vincent},
+  booktitle={2017 IEEE International Conference on Cloud Computing Technology and Science (CloudCom)}, 
+  title={A Preliminary Review of Enterprise Serverless Cloud Computing (Function-as-a-Service) Platforms}, 
+  year={2017},
+  volume={},
+  number={},
+  pages={162-169},
+  keywords={Cloud computing;Google;Servers;Real-time systems;Virtualization;Computational modeling;Serverless Computing;Function-as-a-Service;FAAS;AWS Lambda;Google Cloud Functions;Azure Functions;IBM OpenWhisk;Iron.io;Auth0 Webtask;Gestal Laser},
+  doi={10.1109/CloudCom.2017.15}
+}
+
+@INPROCEEDINGS{10643918,
+  author={Ekwe-Ekwe, Nnamdi and Amos, Lucas},
+  booktitle={2024 IEEE 17th International Conference on Cloud Computing (CLOUD)}, 
+  title={The State of FaaS: An Analysis of Public Functions-as-a-Service Providers}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={430-438},
+  keywords={Industries;Reviews;Serverless computing;Pricing;History;serverless;faas;functions-as-a-service;serverless computing;state of serverless;state of faas;survey},
+  doi={10.1109/CLOUD62652.2024.00055}
+}
+
+@misc{placeholder,
+  author = {Author, Placeholder},
+  title  = {Temporary Reference},
+  year   = {2025},
+  note   = {To be replaced}
+}
+
