@@ -1,11 +1,70 @@
-\section{Distributed Systems} %TODO
+\section{Auctions in Use} %TODO
 \label{sec:distributed-systems}
 
-\subsection{Challenges in Distributed Systems}
+%Figure in here somewhere?
+
+\subsection{Advantages of auction-based scheduling}
+
+% No centralized source of truth -> Auctions dont need one (more faas specific)
+
+% Unreliable infrastructure -> We dont need to route all the way to the top but if we do this can fail slow and cause significant overhead
 
 
-A Distributed System does inherently not have a centralized, reliable source of truth, which creates a set of challenges that researchers have long tried to mitigate. One well-known example is the CAP theorem: \footnote{Related to this is also the PACELC theorem which differentiates between a partitioned and non-partitioned system} It states that a distributed system can not be consistent, available and partition-tolerant simultaneously. 
-Issues of this type become more pronounced in a fog environment. There, computers are not just communicating at large scale -- as in a datacenter -- but additionally face increasingly unreliable infrastructure such as network or power outages.
+A Distributed System inherently does not have a centralized, reliable source of truth, which creates a set of challenges that researchers have long tried to mitigate. 
+One well-known example is the CAP theorem\footnote{Related to this is also the PACELC theorem which differentiates between a partitioned and non-partitioned system}:  
+It states that a distributed system cannot simultaneously be consistent, available and partition-tolerant~\cite{kleppmann2019designing}, which becomes more prevalent in fog environments towards the edge as networking and resources are increasingly unreliable.
+Auctions alleviate the need for centralized state as they can isolate scheduling decisions on each individual node based on a shared algorithm. 
+This way, expensive synchronization with other nodes or network calls can be avoided, significantly reducing the risk of dependency-induced failures. 
+
+Furthermore, employing the dynamic nature of auctions can help to mitigate service downtime in the face of network outages.
+Networks commonly face partial outages due to a wide array of possible causes. 
+As execution scheduling is often transparent for the client, failures in higher layers of the Fog Stack -- e.g. the Cloud -- may still affect their function, which is expected to be executed at the edge.
+In a system that uses auctions to determine which requests will be executed at the edge, the scheduling algorithm becomes more comprehensible for the user, giving them the freedom to decide what to do in such a scenario.
+On the one hand for example, a failure in the datacenter may prompt a user with high availability requirements to increase their bid, so that the requests are executed at the edge and hence not affected by the Cloud outage. 
+On the other hand, a user with lower availability requirements may be more inclined to tolerate a (partial) outage instead of paying a higher price for guaranteed execution.
+
+Elaborating on this, intelligent bidding strategies can also be applied more broadly to reduce cost while sustaining performance.
+As execution patterns and load on a public Fog system change over time (often correlated to diurnal or weekly patterns \cite{10.1145/3592533.3592808}), developers can try to "beat the market" by adjusting bids in real time.  
+This effect could influence market dynamics, by for example providing a small startup with less financial resources the ability to compete with established cooperations in latency-related issues.
+To elaborate, a developer could reduce the bids for his globally distributed IoT functions at night -- as traffic decreases -- in each respective timezone to save money while the functions remain to be executed at the edge.
+
+
+\subsection{Disadvantages of auction-based scheduling}
+
+However, the competitive nature of auctions may result in economically unjustified prices for function execution. 
+Although auction-inspired mechanisms can effectively derive a “fair” price for scarce resources based on supply-and-demand dynamics, they introduce additional complexity into the system. 
+As discussed above, such auction markets create opportunities for sophisticated bidding algorithms to optimize the cost–performance trade-off for individual clients. 
+Over time, the use of these algorithms may shift from an optional optimization to a practical necessity, as abstaining from competition can lead to degraded performance or increased costs to maintain equivalent performance. 
+This development, however, contrasts with the serverless promise of the FaaS paradigm, which aims to provide a simple and transparent platform for code execution.
+
+Contrarily, although auctions can decrease latency through statelessness and provide the client with more control over function execution than in traditional fog environments, it can also cause significant performance decrease through auction-induced overhead. 
+To determine a winner in an auction, multiple bids must be considered. 
+In a quickly evolving environment like FaaS, AuctionWhisk achieves this by aggregating an average over all bids in a timeframe and then admitting those function that offered higher bids than the average. 
+This potentially introduces additional latency at two layers. 
+Firstly, as the window is aggregated over a certain time period before the winners are determined, functions that arrive early in a window inherit additional latency by having to wait until the window is closed and a decision is made. 
+Secondly, if a function should be eliminated during an auction, the call is propagated to the next layer on the path where an auction is held again.
+Consequently, the effect can be amplified due to unfortunate timing or an insufficient bid. 
+In a case like this, it is likely that there is not only no advantage gained by using a fog infrastructure, but that performance is worse than it would have been, routing the request directly to the cloud. 
+That is, since on top of network latency, auction latency is introduced as well. \footnote{Auction latency also includes serialization, deserialization, IO-operations etc.}
+This can of course have an impact on the perceived performance-cost ratio of the client.
+
+% Performance decrease when once does not use an optimal strategy
+
+% 
+
+\subsection{Challenges in FaaS}
+
+Some issues that arise in running FaaS on fog infrastructure, cannot be solely attributed to either one of them, but they rather amplify each other. In the following we elaborate on two of them:
+
+Firstly, low resource availability on fog nodes creates tension in combination with the often high resource overhead of function execution. 
+Especially more traditional virtualization technology -- such as containerization or simple VMs -- have a high memory overhead \cite{246288}, which causes the scarce resources near the edge to be used less efficiently. 
+In fog environments, functions are commonly small and hence have a considerable overhead in comparison to actual memory footprint. 
+\footnote{Though newer virtualization technologies show improved overhead, they are not broadly established yet}
+
+Secondly, latency increase through time-intensive startups of new virtualization instances is prevalent in fog backends. 
+The process, which is often referred to as a coldstart describes the initialization and creation of a new container, VM or similar virtualized environment, that should execute application code. 
+In correlation with low resources like memory or storage -- as discussed above -- computation power is commonly poor on many fog nodes. 
+This can prolong resource-intensive coldstarts, thereby also increasing end-to-end latency. This is particular important, when considering the often low-latency requirements that often drives applications into using fog systems.
 
 % Rephrase this better -> maybe this also belongs in my own part?
 % For the aforementioned established deployments this means, that assumptions on resources can be made and one of two cases is expected: 
