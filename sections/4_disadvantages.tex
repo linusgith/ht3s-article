@@ -1,0 +1,35 @@
+\section{Disadvantages of Auctions} %TODO
+\label{sec:disadvantages}
+
+\subsection{Complexity through Auctions}
+However, the competitive nature of auctions may result in economically unjustifiable prices for function execution. 
+Although auction-inspired mechanisms can effectively derive a “fair” price for scarce resources based on supply-and-demand dynamics, they introduce additional complexity into the system. 
+As discussed above, such auction markets create opportunities for sophisticated bidding algorithms to optimize the cost–performance trade-off for individual clients. 
+Over time, the use of these algorithms may shift from an optional optimization to a necessity, as abstaining from competition can lead to degraded performance or increased costs to maintain equivalent performance. 
+This development, however, contrasts with the serverless promise of the FaaS paradigm, which aims to provide a simple and transparent platform for code execution.
+
+%TODO Rephrase all this
+\subsection{Volatility and Statelessness in a Distributed System}
+
+Keeping to this idea, dynamic bidding algorithms in an auction-based stateless system may cause an issue concerning increased resource overhead and churn.
+Since auctions are only employed when capacity is exceeded to determine which function should be stored on a node (and which should be evicted), additional overhead and churn can be introduced when functions are moved between nodes continuously in an environment with highly variable load.
+This effect occurs since there is no component coordinating global load through sophisticated balancing algorithms, but instead load is only propagated upwards towards the Cloud.
+This can potentially cause issues on two levels, that can amplify when combined.
+Firstly, moving a function causes increased latency for the application. This is primarily caused, by evicting the function from one node, moving the function data to a new node and starting it there. \footnote{Such a first execution (on a new node) is called a coldstart, which consumes additional resources and takes longer, since a new virtualization environment is created.} %TODO cite any faas paper here lol
+Secondly, volatile execution patterns are not uncommon in Fog environments. 
+Especially close to the edge, where clients are geographically colocated, there are many factors (e.g., weather, time or events) that can introduce correlated load changes in different applications. \footnote{The closer one moves to the Cloud the less apparent these effects become, as there are more applications -- which through uncorrelated load patterns -- balance each other out.} %TODO cite aws paper
+For example, observing a deployed application with a low bid:
+As soon as load increases and the nodes closer to the edge reach maximum resource utilization, the function with a low-bid is evicted and set to be rescheduled on a new node, causing additional resource consumption and a latency increase for the client.
+This effect can be amplified and cause significant load spikes when such eviction processes happen at the same time, due to correlation in application request variability.
+
+\subsection{Latency Caused by Auctions}
+
+Another potential concern is, that although auctions can decrease latency through stateless, dependency-free operations and provide the client with more control over function execution than in traditional fog environments, it can also cause significant performance decrease through auction-induced overhead. 
+To determine a winner in an auction, multiple bids must be considered. 
+In a quickly evolving environment like FaaS, AuctionWhisk achieves this by aggregating an average over all bids in a timeframe and then admitting those functions that offered higher bids than the average. 
+This potentially introduces additional latency at two layers. 
+Firstly, as the window is aggregated over a certain time period before the winners are determined, functions that arrive early in a window inherit additional latency by having to wait until the window is closed and a decision is made. 
+Secondly, if a function should be eliminated during an auction, the call is propagated to the next layer on the path where an auction is held again.
+Consequently, the effect can be amplified due to unfortunate timing or an insufficient bid. 
+In a case like this, that performance is worse than it would have been, routing the request directly to the cloud. That particularly means, that in this scenario the Fog system can put an application at a disadvantage, since on top of network latency, auction latency is introduced as well. \footnote{Auction latency is here defined to also include serialization, deserialization, IO-operations etc.}
+This can of course have an impact on the perceived performance-cost ratio of the client.

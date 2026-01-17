@@ -1,0 +1,64 @@
+\section{Applicability} %TODO
+\label{sec:applicability}
+
+In this section we will summarize our findings from Section~\ref{sec:advantages} and Section~\ref{sec:disadvantages} to judge AuctionWhisk's general applicability in common Fog Computing and FaaS use-cases in order to determine its potentials and deficiencies in those areas.
+
+\subsection{Summary}
+
+AuctionWhisk is able to offer a stateless approach to scheduling functions in a distributed environment. 
+This offers simplicity to the system and reduces operational overhead for the provider, while also giving the client more freedom and control over cost and latency requirements. 
+Furthermore, the approach can limit the effects of dependency-induced failures.
+
+Contrarily, auctions also introduce additional complexity into FaaS, counteracting the paradigm's promise of simplicity. 
+Moreover, auctions can introduce overhead at multiple levels: First, bidding strategies can cause price spikes for function execution which can potentially lead to increased resource overhead and churn. 
+Second, the concept of auctions requires aggregation of function calls in a component that delay request execution. 
+This effect can be amplified at multiple layers by the hierarchical structure and request propagation in AuctionWhisk.
+
+\subsection{Use Cases}
+
+In the following, we will only consider use cases that generally benefit from the locality and very low-latency advantages Fog or Edge Computing contribute to fairly determine AuctionWhisk's applicability based on its contributions. 
+For this we will first examine the properties a deployed application on AuctionWhisk should have and then elaborate this on two examples.
+
+A use case that complements AuctionWhisk's approach, should have the necessity for dynamic request priority adjustments or cost-minimization.
+If this property is not given, the application would likely not benefit much from the advantages of auctions and instead would only have to face the increased complexity they introduce.
+Furthermore, it should have higher reliability requirements than an application that is normally deployed in a Fog environment. 
+That is, although the statelessness AuctionWhisk provides increases reliability by reducing cascading failures, it also sacrifices global load balancing that can be beneficial during load spikes to reduce overall latency.
+
+Consequently, a suitable case might be video footage evaluation of events with high crowd-density to determine potential panic dangers and send early warnings.
+Here, there is a need for low latency in the limited periods where events take place. 
+Furthermore, reliability is important as failure in an upstream component should not cause system failure in any case during the critical time periods.
+Importantly, the cameras do not have the needed computation power to evaluate the video-material, hence a remote system is required that is optimally edge distributed to avoid separate management at many potential event locations.
+
+Contrarily, a non-suitable use case could be high-scale traffic evaluation to analyze long term driving behavior in different regions or during different times of the day. 
+As there is always traffic, there is no temporal restriction and since the system is only meant to analyze and not to warn there is no low-latency requirement or a necessity for dynamic priority adjustments. 
+Similarly, as monitoring is conducted over long time-periods, reliability is not critical and small outages can be tolerated.
+More importantly, cost should be predictable in relation to the performance which AuctionWhisk cannot guarantee.
+
+
+% \subsection{Stateless scheduling}
+
+% The proposed stateless function placement through auctions can improve reliability and latency, as we remove the necessity for potentially slow or failing dependencies. 
+% Yet, it is only able to do so locally since there is no node load balancing across nodes.
+% That is, when the complexity of a node is reached, latency can increase significantly as execution requests are propagated to other nodes closer to the cloud as opposed to other edge nodes, that may offer lower latency. 
+
+% Contrarily, a stateful approach can generally consider a greater context by scheduling functions at a global scope and hence make more sophisticated decisions, that may improve system-wide resource utilization while maintaining low latencies by avoiding auction overhead. 
+% However, from the provider's perspective this introduces a higher operational overhead by increasing the complexity of the system.  
+
+% \subsection{A free market for functions}
+
+% Auctions offer an opportunity for low latency with minimal costs by employing sophisticated bidding algorithms.
+% Although, this can provide all clients with a similar chance for low latencies in their respective applications by using the "optimal" algorithm, it also has the potential to create a market where clients with more financial resources dominate nodes in proximity to the edge by outbidding clients with less resources.
+
+% Oppositely, bidding algorithms cannot offer low latency reliably as bids can change quickly. 
+% When a bid does not suffice for execution on an edge node, this can cause it to be rescheduled on a node higher up the node path, which can cause high latency. That is, noticing the execution on the wrong node, adjusting the bid and retrying produces high latency.
+
+% \subsection{Use-cases}
+
+% In conclusion, AuctionWhisk can provide low latency in an isolated geographical area while keeping operational overhead and system complexity for the provider to a minimum. 
+% Although clients gain freedom over latency requirements and cost, increased operational overhead can occur as bidding strategies have to be considered, and reliability demands dealt with.
+
+% These properties can be used to determine AuctionWhisk's applicability to certain use-cases: Generally, applications that do not need the locality or very low-latency properties of Fog or Edge Computing, will not be able to benefit from these paradigms. Consequently, we will not consider such use-cases to determine AuctionWhisk's applicability.
+
+% Workloads that can 
+
+% Alternative maybe the other way around: Say we think that it works well for this scenario because xyz and doesnt work well for this because abc

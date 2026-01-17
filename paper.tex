@@ -29,14 +29,17 @@
 \begin{abstract}
 % In practice Function-as-a-Service (FaaS) deployments are often optimized to run in large datacenters, but as researchers and industries attempt to reduce latency further, the attention has shifted towards FogAuctionWhisk presents a approach to adapting the FaaS paradigm to the heterogeneous infrastructure of fog-computing by allowing developers to individually define the importance of application performance by bidding on resources. This not only allows for more efficient use of computation and improved overall system performance but also for increased earning of the platform provider.
 
-Why does everything break
+AuctionWhisk introduces stateless Function-as-a-Service scheduling into Fog Computing by employing auctions, where users can improve application performance by bidding on better resources.
+Not only do auctions have the potential to improve performance, but they also provide the Function developer with more flexibility and control over the cost-performance ratio. 
+However, the statelessness, as well as auctions, introduce their own trade-offs, that can increase the complexity of using the system and even decrease performance under certain conditions.
+
 \end{abstract}
 
 \input{sections/1_introduction.tex}
 \input{sections/2_background_and_rel_work.tex}
-\input{sections/3_distributed_systems.tex}
-\input{sections/4_auctions.tex}
-\input{sections/5_usecases.tex}
+\input{sections/3_advantages.tex}
+\input{sections/4_disadvantages.tex}
+\input{sections/5_applicability.tex}
 \input{sections/n_conclusion.tex}
 
 \balance

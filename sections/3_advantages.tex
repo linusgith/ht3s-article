@@ -1,0 +1,29 @@
+\section{Advantages of Auctions} %TODO
+\label{sec:advantages}
+
+AuctionWhisk makes two contributions: First, it proposes stateless scheduling to mitigate the reliability and latency issues that are inherent with stateful alternatives. Second, by introducing auctions and the market they create, it adds a new layer of logic to consider when deploying functions.
+In the following two sections, we will discuss advantages and disadvantages of using auctions for scheduling. 
+
+\subsection{Statelessness through Auctions}
+
+Auctions alleviate the need for centralized state as they can isolate scheduling decisions on each individual node based on a shared algorithm. 
+A Distributed System inherently does not have a centralized, reliable source of truth, which creates a set of challenges that researchers have long tried to mitigate. 
+One well-known example is the CAP theorem\footnote{Related to this is also the PACELC theorem which differentiates between a partitioned and non-partitioned system}:  
+It states that a distributed system cannot simultaneously be consistent, available and partition-tolerant~\cite{kleppmann2019designing}, which becomes more prevalent in fog environments towards the edge as networking and resources are increasingly unreliable.
+By isolating scheduling decisions with auctions, expensive synchronization with other nodes or network calls can be avoided, significantly reducing the risk of dependency-induced failures. 
+
+\subsection{Minimizing dependencies}
+
+Furthermore, employing the dynamic nature of auctions can help to mitigate service downtime in the face of network outages.
+Networks commonly face partial outages due to a wide array of possible causes. 
+As execution scheduling is often transparent for the client, failures in higher layers of the Fog Stack -- e.g. the Cloud -- may still affect their function, which is expected to be executed at the edge.
+In a system that uses auctions to determine which requests will be executed at the edge, the scheduling algorithm becomes more comprehensible for the user, giving them the freedom to decide what to do in such a scenario.
+On the one hand for example, a failure in the datacenter may prompt a user with high availability requirements to increase their bid, so that the requests are executed at the edge and hence not affected by the Cloud outage. 
+On the other hand, a user with lower availability requirements may be more inclined to tolerate a (partial) outage instead of paying a higher price for guaranteed execution.
+
+\subsection{Improving the Cost-Performance Ratio}
+
+Elaborating on this, intelligent bidding strategies can also be applied more broadly to reduce cost while sustaining performance.
+As execution patterns and load on a public Fog system change over time (often correlated to diurnal or weekly patterns \cite{10.1145/3592533.3592808}), developers can try to "beat the market" by adjusting bids in real time.  
+This effect could influence market dynamics, by for example providing a small startup with less financial resources the ability to compete with established cooperations in latency-related issues.
+To elaborate, a developer could reduce the bids for his globally distributed IoT functions at night -- as traffic decreases -- in each respective timezone to save money while the functions remain to be executed at the edge.
